@@ -41,6 +41,9 @@
     // Onload, take the DOM of the page, get the markdown formatted text out and
     // apply the converter.
     function makeHtml(data) {
+        // see also: https://stackoverflow.com/questions/9756392/python-regex-to-match-yaml-front-matter
+        //data = data.replace(/^---[\s\S]+?---/g, "");
+        data = data.replace(/^---(.|\n)*?---\n/g, "");
         storage.get(['supportMath', 'katex', 'html', 'toc'], function(items) {
             // Convert MarkDown to HTML
             var preHtml = data;
